@@ -342,7 +342,13 @@ a, a:hover {
 .containerLogin span {
 	font-size: 12px;
 }
-
+.containerLogin .form-container p{
+	color: #333;
+	font-size: 14px;
+	text-decoration: none;
+	margin: 15px 0;
+    font-weight: bold;
+}
 .containerLogin a {
 	color: #333;
 	font-size: 14px;
