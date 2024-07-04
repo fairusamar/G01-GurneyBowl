@@ -82,6 +82,18 @@
     background: #ffffff;
     color: #2e323c;
      }
+     .form-group label{
+         font-weight: bold;
+         text-transform: uppercase;
+         font-size: 16px;
+         letter-spacing: 1px;
+     }
+     .form-group .gender span{
+         font-weight: normal;
+         text-transform: capitalize;
+         letter-spacing: normal;
+         font-size: 15px;
+     }
 
      .card {
     background: #ffffff;
@@ -91,14 +103,38 @@
     border: 0;
     margin-bottom: 1rem;
      }
-     .row .gutters h6{
+     .row .gutters .userheader h6{
          padding-bottom: 20px;
+         font-size: 30px;
+         font-weight: 800;
+         color: #FEC620 !important;
+         font-weight: bolder !important;
      }
      
      .btn{
          position: relative;
          bottom: -2px;
          
+     }
+     .btn-primary {
+         font-weight: bold !important;
+        color: black!important;
+        background-color: #FFC800 !important;
+        border-color: #FFC800 !important;
+         
+     }
+     .btn-primary:hover{
+         font-weight: bold;
+        color: red!important;
+        background-color: #FFD747 !important;
+        border-color: #FFD747!important;
+         transition: 0.2s;
+     }
+     .btn-secondary:hover{
+         color: black !important;
+        background-color: lightgrey!important;
+        border-color: lightgrey !important;
+         transition: 0.2s;
      }
      
      /*GENDER RADIO BUTTON CSS*/
@@ -262,7 +298,10 @@
             <div class="card-body">
             <div class="row gutters">
                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                    <h6 class="mb-2 text-primary" style="text-align: center;"><b style="color: #dc3545;">EDIT PROFILE</b></h6>
+                    <div class="userheader">
+                       <h6 class="mb-2 text-primary" style="text-align: center;">EDIT PROFILE<hr></h6>
+                       
+                   </div>
                 </div>
                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                     <div class="form-group">
@@ -295,15 +334,15 @@
                     <label for="website">Gender</label>
                         <div class="genderradio">
                            <div class="form-group">
-                            <label>
+                            <label class="gender">
                                 <input type="radio" id="male" name="radio">
                                 <span>Male</span>
                             </label>
-                            <label>
+                            <label class="gender">
                                 <input type="radio" id="female" name="radio">
                                 <span>Female</span>
                             </label>
-                            <label>
+                            <label class="gender">
                                 <input type="radio" id="female" name="radio">
                                 <span>Prefer not to say</span>
                             </label>
