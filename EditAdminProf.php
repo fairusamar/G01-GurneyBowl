@@ -1,15 +1,27 @@
+<?php 
+session_start();
+
+if (isset($_SESSION['id']) && isset($_SESSION['fname'])) {
+include "Addb_conn.php";
+include 'php/User.php';
+
+$user = getUserById($_SESSION['id'], $conn);
+
+ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Admin Profile</title>
+  <title>Edit Admin Profile</title>
   <meta charset="utf-8">
+  <link rel="icon" type="image/x-icon" href="logo.jpg">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="adstyle.css" type="text/css">
+  <link rel="stylesheet" href="css/adstyle.css" type="text/css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 <body>
+<?php if ($user) { ?>
 
 <nav class="navbar navbar-inverse visible-xs">
   <div class="container-fluid">
@@ -30,6 +42,7 @@
         <li><a href="#section4">Events</a></li>
         <li><a href="#section5">Availability</a></li>
         <li class="active"><a href="AdminProfile.html" class="Profile">Profile</a></li>
+        <li><a href="ADDAd.php">Add New Profile</a></li>
       </ul>
     </div>
   </div>
@@ -47,38 +60,82 @@
         <li><a href="#section4">Events</a></li>
         <li><a href="#section5">Availability</a></li>
         <li class="active"><a href="AdminProfile.html" class="Profile">Profile</a></li>
+        <li><a href="ADDAd.php">Add New Profile</a></li>
       </ul><br>
     </div>
     <br>
 
     <div class="col-sm-10">
         <div class="well well-lg">
-            <h1>ADMIN PROFILE</h1>
+        <form class="shadow w-450 p-3" 
+              action="php/edit.php" 
+              method="post"
+              enctype="multipart/form-data">
+
+            <h1>Edit Admin Profile</h1>
+            <!-- error -->
+            <?php if(isset($_GET['error'])){ ?>
+            <div class="alert alert-danger" role="alert">
+              <?php echo $_GET['error']; ?>
+            </div>
+            <?php } ?>
+            
+            <!-- success -->
+            <?php if(isset($_GET['success'])){ ?>
+            <div class="alert alert-success" role="alert">
+              <?php echo $_GET['success']; ?>
+            </div>
+            <?php } ?>
             <br>
             <div class="well well-md" style="background-color:lightslategrey">
               <div class="mb-3">
-              <img src="logo.jpg" alt="avatar" id="imgp">
+              <label id="adprof">Profile Picture:</label><br>
+              <img src="upload/<?=$user['pp']?>" alt="avatar" id="imgp">
+              <br><br>
+            <input type="file"
+                   class="form-control"
+                   name="pp">
+            <input type="text"
+                   hidden="hidden" 
+                   name="old_pp"
+                   value="<?=$user['pp']?>" >
             </div>
             <br>
               <div class="bm-3">
               <label id="adprof">Name:</label>
-              <p class="form-control"></p>
+              <input type="text" 
+                   class="form-control"
+                   name="fname"
+                   value="<?php echo $user['fname']?>">
             </div>
             <br>
             <div class="bm-3">
               <label id="adprof">Email:</label>
-              <p class="form-control"></p>
+              <input type="email" 
+                   class="form-control"
+                   name="uname"
+                   value="<?php echo $user['username']?>">
+                   <b><p style="color:#000000;">
+                    NOTE!! REMEMBER EMAIL CHANGES FOR LOG IN!!</p></b>
             </div>
             <br>
             <div class="bm-3">
               <label id="adprof">Admin ID:</label>
-              <p class="form-control"></p>
+              <p class="form-control"><?php echo $user['id']?></p>
+            </div>
+            <br>
+            <div class="bm-3">
+              <label id="adprof">Confirmation Number:</label>
+              <input type="text" 
+                   class="form-control"
+                   name="conw"
+                   value="<?php echo $user['plain_password']?>">
             </div>
             <br>
             </div>
-            <a href="#" class="btn btn-primary">
-              Edit Profile</a>
-            <a href="#" class="btn btn-danger">Logout</a>
+            <button type="submit" class="btn btn-primary">Update</button>
+          <a href="AdminProfile.php" class="link-secondary"><u>RETURN</u></a>
+            </form>
         </div>
       </div>
   </div>
@@ -88,5 +145,15 @@
   <div class="copyright">&copy;2024- <strong>Residensi UTMKL</strong></div>
 </div>
 </footer>
+<?php }else{ 
+        header("Location: AdminProfile.php");
+        exit;
+
+    } ?>
 </body>
 </html>
+
+<?php }else {
+	header("Location: login.php");
+	exit;
+} ?>

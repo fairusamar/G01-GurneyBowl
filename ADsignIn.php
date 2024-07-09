@@ -11,13 +11,13 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>Sign In - Gurney Bowl Booking System</title>
-    <link rel="shortcut icon" href="signIn/images/gbbslogo.png">
+    <link rel="shortcut icon" href="css/adminpages/ADsignIn/images/gbbslogo.png">
 
   <!-- Bootstrap CSS -->
-  <link href="signIn/css/animate.css" rel="stylesheet">
-  <link rel="stylesheet" href="signIn/css/bootstrap.min.css" type="text/css">
+  <link href="css/adminpages/ADsignIn/css/animate.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/adminpages/ADsignIn/css/bootstrap.min.css" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet">
-  <link rel="stylesheet" href="signIn/css/style.css">
+  <link rel="stylesheet" href="css/adminpages/ADsignIn/css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     
 </head>
@@ -26,7 +26,7 @@
   <nav class="navbar navbar-expand-md navbar-dark">
     <div class="container"> 
       <!-- Brand --> 
-      <a class="navbar-brand mr-auto" href="index.html"><img src="signIn/images/gbbslogo.png" alt="GBBS" width="100px" height="100px"/></a>
+      <a class="navbar-brand mr-auto" href="index.html"><img src="css/signIn/images/gbbslogo.png" alt="GBBS" width="100px" height="100px"/></a>
         
       
       <!-- Toggler/collapsibe Button -->
@@ -39,9 +39,7 @@
           <li class="nav-item"> <a class="nav-link" href="about.html">About Us</a> </li>
           <li class="nav-item"> <a class="nav-link" href="service.html">Services</a> </li>
           <li class="nav-item"> <a class="nav-link" href="index.html"#contact>Contact Us</a> </li>
-            <div class="nav-booknow-btn">
-            <li><a href="signIn.html" class="btn text-uppercase btn-outline-danger btn-lg mb-3 wow"><b>BOOK NOW</b></a></li>
-            </div>
+           
         
         </ul>
         
@@ -52,26 +50,37 @@
     
 
     <!-- LOGIN FORM-->
-
 <div class="containerLogin" id="containerLogin">
 	
 	<div class="form-container sign-in-container">
+  <form action="php/login.php" method="post">
 		<form action="#">
-			<h1>Sign In</h1>
-			<input type="email" placeholder="Email" />
-			<input type="password" placeholder="Password" />
-			<a href="CUSTresetpass.html">Forgot your password?</a>
-			<a href="CUSTindex.html"><button>Sign In</button></a>
-			<a href="ADsignIn.php"><i class="fa fa-user"></i>Sign In as Admin</a>
+			<h1><i class="fa fa-user"></i></h1>
+			<h1>Admin Sign In</h1>
+
+      <?php if(isset($_GET['error'])){ ?>
+    		<div class="alert alert-danger" role="alert">
+			  <?php echo $_GET['error']; ?>
+			</div>
+		    <?php } ?>
+        
+			<input type="email" placeholder="Email" name="uname"
+      value="<?php echo (isset($_GET['uname']))?$_GET['uname']:"" ?>"> 
+			<input type="password" placeholder="Password" name="pass">
+			<a href="Adreset-pass.php"><i>Forgot your password?</i></a>
+			<button type="submit">Sign In</button>
+			<p>Not an admin?<a href="signIn.html"> Sign In as User</a></p>
 		</form>
+  </form>
 	</div>
 	<div class="overlay-container">
 		<div class="overlay">
 			<div class="overlay-panel overlay-right">
-				<h1>Welcome back!</h1>
-				<p>To keep connected with us, please login with your personal info.</p>
-               <p class="pNext"><br><br><br>New here? Create an account to get started!</p>
-                <a href="signUp.html"><button class="ghost" id="signUp"><b>Sign Up</b></button></a>
+				
+				<h1>Welcome, Admin!</h1>
+				<p>To manage the system, please log in with your admin credentials.</p>
+               <p class="pNext"><br><br><br>Access is limited to authorized personnel.</p>
+                
 			</div>
 		</div>
 	</div>
@@ -94,9 +103,9 @@
         <div class="footerNav">
             <ul>
                 <li><a href="index.html">Home</a></li>
-                <li><a href="">Events &amp; Promotions</a></li>
+                <li><a href="eventpromo.html">Events &amp; Promotions</a></li>
                 <li><a href="about.html">About Us</a></li>
-                <li><a href="">Services</a></li>
+                <li><a href="service.html">Services</a></li>
                 <li><a href="index.html#contact">Contact Us</a></li>
             </ul>
         </div>
