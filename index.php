@@ -1,58 +1,37 @@
 <?php
+// Check if the form was submitted
+if (isset($_POST["submit"])) {
+    // Validate and sanitize input data (you should improve validation as needed)
+    $email = $_POST['Email'];
+    $suggestion = $_POST['Suggestion'];
 
-// Check if form is submitted
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-  // Collect form data
-  $email = varchar($_POST['email']);
-  $feedback = varchar($_POST['feedback']);
+    // Database connection settings
+    $servername = "localhost"; // Change this if your database is on a different server
+    $username = "root"; // Database username
+    $password = ""; // Database password (consider storing securely)
+    $dbname = "accounts"; 
 
-// Database connection parameters
-$servername = "localhost"; // Change this if your database is on a different server
-$username_db = "root"; // Database username
-$password_db = ""; // Database password (consider storing securely)
-$dbname = "feedback"; // Database name
+    // Create connection
+    $conn = new mysqli($servername, $username, $password, $dbname);
 
-// Create connection
-$conn = new mysqli($servername, $username_db, $password_db, $dbname);
-
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
-    
-    // Simple validation (you can expand this as needed)
-    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        $response = array(
-            'status' => 'error',
-            'message' => 'Invalid email format'
-        );
-    } else {
-        // Prepare SQL statement to insert data
-        $stmt = $conn->prepare("INSERT INTO feedback (Email, Suggestion) VALUES (?, ?)");
-        $stmt->bind_param("ss", $email, $feedback);
-        
-        // Execute SQL statement
-        if ($stmt->execute()) {
-            $response = array(
-                'status' => 'success',
-                'message' => 'Thank you! Your feedback has been submitted.'
-            );
-        } else {
-            $response = array(
-                'status' => 'error',
-                'message' => 'Failed to save feedback. Please try again later.'
-            );
-            // Optionally log SQL errors for debugging
-            error_log('SQL Error: ' . $stmt->error);
-        }
-        
-        // Close statement
-        $stmt->close();
+    // Check connection
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
     }
-    
-    // Close connection
+
+    // Prepare SQL statement to insert data into database
+    $stmt = $conn->prepare("INSERT INTO feedback (Email, Suggestion) VALUES (?, ?)");
+    $stmt->bind_param("ss", $email, $suggestion);
+
+    // Execute the statement
+    if ($stmt->execute()) {
+        echo "<script>alert('Feedback submitted successfully');</script>";
+    } else {
+        echo "Error: " . $stmt->error;
+    }
+
+    $stmt->close();
     $conn->close();
-    
 }
 ?>
 
@@ -188,33 +167,29 @@ if ($conn->connect_error) {
         
       </div>
       <div class="col-md-6 footer2 wow bounceInUp" data-wow-delay=".25s" id="contact">
-        <div class="form-box">
-          <h4>FEEDBACK FORM</h4>
-          <table class="table table-responsive d-table">
-            <tr>
-              <td><input type="email" class="form-control pl-0" placeholder="EMAIL" /></td>
-            </tr>
-            <tr>
-              <td colspan="2"></td>
-            </tr>
-            
-            <tr>
-              <td colspan="2"><input type="text" class="form-control pl-0" placeholder="FEEDBACK" /></td>
-            </tr>
-            <tr>
-              <td colspan="2"></td>
-            </tr>
-              <tr>
-              <td colspan="2"></td>
-            </tr>
-              <tr>
-              <td colspan="2"></td>
-            </tr>
-            <tr>
-              <td colspan="2" class="text-center pl-0"><button type="submit" class="btn btn-dark">SUBMIT</button></td>
-            </tr>
-          </table>
-        </div>
+      <div class="form-box">
+  <h4>FEEDBACK FORM</h4>
+  <form action="" method="post" enctype="multipart/form-data">
+    <table class="table table-responsive d-table">
+      <tr>
+        <td><input type="email" class="form-control pl-0" name="Email" placeholder="EMAIL" required></td>
+      </tr>
+      <tr>
+        <td colspan="2"></td>
+      </tr>
+      <tr>
+        <td colspan="2"><input type="text" class="form-control pl-0" name="Suggestion" placeholder="FEEDBACK" required></td>
+      </tr>
+      <tr>
+        <td colspan="2"></td>
+      </tr>
+      <tr>
+        <td colspan="2" class="text-center pl-0"><button type= "submit" name= "submit" class="btn btn-dark">SUBMIT</button></td>
+      </tr>
+    </table>
+  </form>
+</div>
+
       </div>
       <div class="col-md-3 footer3 wow bounceInRight" data-wow-delay=".25s">
         
