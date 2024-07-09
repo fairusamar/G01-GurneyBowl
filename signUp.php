@@ -57,7 +57,7 @@ if (isset($_POST["submit"])) {
   <nav class="navbar navbar-expand-md navbar-dark">
     <div class="container"> 
       <!-- Brand --> 
-      <a class="navbar-brand mr-auto" href="index.html"><img src="signUp/images/gbbslogo.png" alt="GBBS" width="100px" height="100px"/></a>
+      <a class="navbar-brand mr-auto" href="index.php"><img src="signUp/images/gbbslogo.png" alt="GBBS" width="100px" height="100px"/></a>
         
       
       <!-- Toggler/collapsibe Button -->
