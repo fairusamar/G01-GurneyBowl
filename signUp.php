@@ -66,12 +66,12 @@ if (isset($_POST["submit"])) {
       <!-- Navbar links -->
       <div class="collapse navbar-collapse" id="collapsibleNavbar">
         <ul class="navbar-nav ml-auto">
-          <li class="nav-item"> <a class="nav-link" href="eventpromo.html">Events &amp; Promotions</a> </li>
+        <li class="nav-item"> <a class="nav-link" href="eventpromo.html">Events &amp; Promotions</a> </li>
           <li class="nav-item"> <a class="nav-link" href="about.html">About Us</a> </li>
           <li class="nav-item"> <a class="nav-link" href="service.html">Services</a> </li>
           <li class="nav-item"> <a class="nav-link" href="index.html"#contact>Contact Us</a> </li>
             <div class="nav-booknow-btn">
-            <li><a href="signup.html" class="btn text-uppercase btn-outline-danger btn-lg mb-3 wow"><b>BOOK NOW</b></a></li>
+            <li><a href="signUp.php" class="btn text-uppercase btn-outline-danger btn-lg mb-3 wow"><b>BOOK NOW</b></a></li>
             </div>
         
         </ul>

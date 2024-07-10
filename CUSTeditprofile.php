@@ -1,3 +1,14 @@
+<?php 
+session_start();
+
+if (isset($_SESSION['ID']) && isset($_SESSION['Email'])) {
+
+include "custdb_conn.php";
+include "php/customer.php";
+$user = getUserById($_SESSION['ID'], $conn);
+
+
+ ?>
 <!doctype html>
 <!--
 	Fox by FreeHTML5.co
@@ -229,11 +240,12 @@
     
 </head>
 <body>
+<?php if ($user) { ?>
 <div class="container-fluid pl-0 pr-0 bg-img clearfix parallax-window2" data-parallax="scroll" >
   <nav class="navbar navbar-expand-md navbar-dark">
     <div class="container"> 
       <!-- Brand --> 
-      <a class="navbar-brand mr-auto" href="index.html"><img src="about/images/gbbslogo.png" alt="GBBS" width="100px" height="100px"/></a>
+      <a class="navbar-brand mr-auto" href="CUSTindex.php"><img src="about/images/gbbslogo.png" alt="GBBS" width="100px" height="100px"/></a>
         
       
       <!-- Toggler/collapsibe Button -->
@@ -255,7 +267,7 @@
               <a class="nav-link" href="#contact">Contact Us</a> 
             </li>  
               <li class="nav-item"> 
-              <a class="nav-link"><i class="userdropdown fa fa-user-circle" style = "font-size: 35px"></i></a> 
+              <a class="nav-link" href="CUSTviewprofile.php"><i class="userdropdown fa fa-user-circle" style = "font-size: 35px"></i></a> 
             </li>      
         </ul>
         
@@ -276,18 +288,18 @@
                 <div class="account-settings">
                     <div class="user-profile">
                         <div class="user-avatar">
-                        <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Maxwell Admin">
+                        <img src="upload/<?=$user['pp']?>" alt="avatar" id="imgp">
                         </div>
-                        <h5 class="user-name">Yuki Hayashi</h5>
+                        <h5 class="user-name"><?=$user['Username']?></h5>
                     </div>
                     <div class="about">
-                        <a href="CUSTviewprofile.html"><h5>View Profile</h5></a>
+                        <a href="CUSTviewprofile.php"><h5>View Profile</h5></a>
                         <hr>
-                        <a href="CUSTeditprofile.html"><h5>Edit Profile</h5></a>
+                        <a href="CUSTeditprofile.php"><h5>Edit Profile</h5></a>
                         <hr>
-                        <a href="CUSTchgpass.html"><h5>Change Password</h5></a>
+                        <a href="CUSTchgpass.php"><h5>Change Password</h5></a>
                         <hr>
-                        <a href="index.html"><h5>Sign Out</h5></a>
+                        <a href="index.php"><h5>Sign Out</h5></a>
                     </div>
                 </div>
                 </div>
@@ -299,34 +311,60 @@
             <div class="row gutters">
                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                     <div class="userheader">
+                    <form action="php/custedit.php" 
+                            method="post"
+                            enctype="multipart/form-data">
                        <h6 class="mb-2 text-primary" style="text-align: center;">EDIT PROFILE<hr></h6>
-                       
+                       <!-- error -->
+                 <?php if(isset($_GET['error'])){ ?>
+                    <div class="alert alert-danger" role="alert">
+                     <?php echo $_GET['error']; ?>
+                    </div>
+                <?php } ?>
+            
+            <!-- success -->
+                <?php if(isset($_GET['success'])){ ?>
+                    <div class="alert alert-success" role="alert">
+                     <?php echo $_GET['success']; ?>
+                    </div>
+                <?php } ?>
                    </div>
                 </div>
                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                    <div class="form-group">
+                <div class="form-group">
                         <label for="fullName">Username</label>
-                        <input type="text" class="form-control" id="fullName" placeholder="Enter username">
+                        <input type="text" class="form-control" id="fullName" placeholder="Enter username"
+                        name="username" value="<?php echo $user['Username']?>">
                     </div>
                 </div>
                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                     <div class="form-group">
                         <label for="eMail">Email Address</label>
-                        <input type="email" class="form-control" id="eMail" placeholder="Enter email address">
+                        <input type="email" class="form-control" id="eMail" placeholder="Enter email address"
+                        name="Email" value="<?php echo $user['Email']?>">
                     </div>
                 </div>
                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                     <div class="form-group">
                         <label for="phone">Phone Number</label>
-                        <input type="text" class="form-control" id="phone" placeholder="Enter phone number">
+                        <input type="text" class="form-control" id="phone" placeholder="Enter phone number"
+                        name="phone_num" value="<?php echo $user['phone_number']?>">
                     </div>
                 </div>
                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                     <div class="form-group">
                     <label for="date">Date of Birth</label>
                         <div class="DOB">
-                            <input type="date" class="form-control" placeholder="Enter date of birth">
+                            <input type="date" class="form-control" placeholder="Enter date of birth"
+                            name="dob" value="<?php echo $user['date_of_birth']?>">
                         </div>
+                    </div>
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label for="phone">Profile Picture</label>
+                        <input type="file" class="form-control" id="phone" placeholder="Choose file"
+                        name="pp"><input type="text" hidden="hidden" name="old_pp"value="<?=$user['pp']?>" >
                     </div>
                 </div>
                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
@@ -335,15 +373,15 @@
                         <div class="genderradio">
                            <div class="form-group">
                             <label class="gender">
-                                <input type="radio" id="male" name="radio">
+                                <input type="radio" id="male" name="gender" value="Male">
                                 <span>Male</span>
                             </label>
                             <label class="gender">
-                                <input type="radio" id="female" name="radio">
+                                <input type="radio" id="female" name="gender" value="Female">
                                 <span>Female</span>
                             </label>
                             <label class="gender">
-                                <input type="radio" id="female" name="radio">
+                                <input type="radio" id="female" name="gender" value="Prefer not to say">
                                 <span>Prefer not to say</span>
                             </label>
                         </div>
@@ -362,6 +400,7 @@
                         </div>
                     </div>
                 </div>
+                </form>
             </div>
         </div>
     </div>
@@ -387,7 +426,7 @@
                 <li><a href="CUSTeventpromo.html">Events &amp; Promotions</a></li>
                 <li><a href="CUSTabout.html">About Us</a></li>
                 <li><a href="CUSTservice.html">Services</a></li>
-                <li><a href="CUSTindex.html#contact">Contact Us</a></li>
+                <li><a href="CUSTindex.php#contact">Contact Us</a></li>
             </ul>
         </div>
     </div>
@@ -405,6 +444,15 @@
 <script src="js/parallax.js"></script>
 <script src="js/wow.js"></script>
 <script src="js/main.js"></script>
+<?php }else { 
+     header("Location: CUSTindex.php");
+     exit;
+    } ?>
 
 </body>
 </html>
+
+<?php } else {
+	header("Location: index.php");
+	exit;
+} ?>

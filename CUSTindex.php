@@ -1,4 +1,11 @@
 <?php
+session_start();
+
+if (isset($_SESSION['ID']) && isset($_SESSION['Email'])) {
+
+include "custdb_conn.php";
+include 'php/customer.php';
+$user = getUserById($_SESSION['ID'], $conn);
 // Check if the form was submitted
 if (isset($_POST["submit"])) {
     // Validate and sanitize input data (you should improve validation as needed)
@@ -58,6 +65,7 @@ if (isset($_POST["submit"])) {
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
+<?php if ($user) { ?>
 <div class="container-fluid pl-0 pr-0 bg-img clearfix parallax-window2" data-parallax="scroll" data-image-src="customerpages/index/images/bghome1.jpg">
   <nav class="navbar navbar-expand-md navbar-dark">
     <div class="container"> 
@@ -84,7 +92,7 @@ if (isset($_POST["submit"])) {
               <a class="nav-link" href="#contact">Contact Us</a> 
             </li>  
               <li class="nav-item"> 
-              <a class="nav-link"><i class="userdropdown fa fa-user-circle"></i></a> 
+              <a class="nav-link" href="CUSTviewprofile.php"><i class="userdropdown fa fa-user-circle"></i></a> 
             </li>      
         </ul>
                 
@@ -123,7 +131,7 @@ if (isset($_POST["submit"])) {
       <h2 class="wow bounceInLeft" data-wow-delay=".25s">EVENTS AND PROMOTIONS</h2>
       <hr/>
       <p class="wow bounceInRight" data-wow-delay=".25s">Join us at Gurney Bowl for exciting events and promotions all year round. From tournaments and leagues to family fun nights and special discounts, there's always something happening. Stay updated on our website and social media for the latest news.</p>
-      <a href="eventpromo.html" class="btn btn-lg btn-outline-danger d-inline-block text-center mx-auto wow bounceInDown">Learn More</a> </div>
+      <a href="CUSTeventpromo.html" class="btn btn-lg btn-outline-danger d-inline-block text-center mx-auto wow bounceInDown">Learn More</a> </div>
   </div>
 </div>
 <div class="container-fluid fh5co-content-box">

@@ -26,7 +26,7 @@
   <nav class="navbar navbar-expand-md navbar-dark">
     <div class="container"> 
       <!-- Brand --> 
-      <a class="navbar-brand mr-auto" href="index.html"><img src="css/signIn/images/gbbslogo.png" alt="GBBS" width="100px" height="100px"/></a>
+      <a class="navbar-brand mr-auto" href="index.php"><img src="css/signIn/images/gbbslogo.png" alt="GBBS" width="100px" height="100px"/></a>
         
       
       <!-- Toggler/collapsibe Button -->
@@ -38,7 +38,7 @@
           <li class="nav-item"> <a class="nav-link" href="eventpromo.html">Events &amp; Promotions</a> </li>
           <li class="nav-item"> <a class="nav-link" href="about.html">About Us</a> </li>
           <li class="nav-item"> <a class="nav-link" href="service.html">Services</a> </li>
-          <li class="nav-item"> <a class="nav-link" href="index.html"#contact>Contact Us</a> </li>
+          <li class="nav-item"> <a class="nav-link" href="index.php"#contact>Contact Us</a> </li>
            
         
         </ul>
@@ -106,7 +106,7 @@
                 <li><a href="eventpromo.html">Events &amp; Promotions</a></li>
                 <li><a href="about.html">About Us</a></li>
                 <li><a href="service.html">Services</a></li>
-                <li><a href="index.html#contact">Contact Us</a></li>
+                <li><a href="index.php#contact">Contact Us</a></li>
             </ul>
         </div>
     </div>

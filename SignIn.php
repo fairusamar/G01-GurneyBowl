@@ -1,25 +1,3 @@
-<?php
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $username = $conn->real_escape_string($_POST['username']);
-    $password = $conn->real_escape_string($_POST['password']);
-
-    $sql = "SELECT id, username, password FROM users WHERE username='$username'";
-    $result = $conn->query($sql);
-
-    if ($result->num_rows > 0) {
-        $row = $result->fetch_assoc();
-        if (password_verify($password, $row['password'])) {
-            $_SESSION['Username'] = $username;
-            header("Location: index.php");
-        } else {
-            echo "Invalid password.";
-        }
-    } else {
-        echo "No user found with that username.";
-    }
-}
-?>
-
 <!doctype html>
 <html lang="en">
 <head>
@@ -56,7 +34,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
           <li class="nav-item"> <a class="nav-link" href="service.html">Services</a> </li>
           <li class="nav-item"> <a class="nav-link" href="index.html"#contact>Contact Us</a> </li>
             <div class="nav-booknow-btn">
-            <li><a href="signIn.html" class="btn text-uppercase btn-outline-danger btn-lg mb-3 wow"><b>BOOK NOW</b></a></li>
+            <li><a href="signUp.php" class="btn text-uppercase btn-outline-danger btn-lg mb-3 wow"><b>BOOK NOW</b></a></li>
             </div>
         
         </ul>
@@ -71,7 +49,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <div class="containerLogin" id="containerLogin">
 	<div class="form-container sign-in-container">
-  <form action="php/login.php" method="post">
+  <form action="php/custlogin.php" method="post">
 		<form action="#">
 			<h1><i class="fa fa-user"></i></h1>
 			<h1>Sign In</h1>
@@ -82,10 +60,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 			</div>
 		    <?php } ?>
         
-			<input type="email" placeholder="Email" name="uname"
-      value="<?php echo (isset($_GET['uname']))?$_GET['uname']:"" ?>"> 
-			<input type="password" placeholder="Password" name="pass">
-			<a href="Adreset-pass.php"><i>Forgot your password?</i></a>
+			<input type="email" placeholder="Email" name="username"
+      value="<?php echo (isset($_GET['username']))?$_GET['username']:"" ?>"> 
+			<input type="password" placeholder="Password" name="password">
+			<a href="#"><i>Forgot your password?</i></a>
 			<button type="submit">Sign In</button>
 			<p>Not a user?<a href="ADsignIn.php"> Sign In as Admin</a></p>
 		</form>
@@ -97,7 +75,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 				<h1>Welcome back!</h1>
 				<p>To keep connected with us, please login with your personal info.</p>
                <p class="pNext"><br><br><br>New here? Create an account to get started!</p>
-                <a href="signUp.html"><button class="ghost" id="signUp"><b>Sign Up</b></button></a>
+                <a href="signUp.php"><button class="ghost" id="signUp"><b>Sign Up</b></button></a>
 			</div>
 		</div>
 	</div>
@@ -154,8 +132,7 @@ signUpButton.addEventListener('click', () => {
 signInButton.addEventListener('click', () => {
 	container.classList.remove("right-panel-active");
 });
-    
-    </script>
+</script>
     
 </body>
 </html>
