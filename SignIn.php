@@ -1,4 +1,3 @@
-
 <?php
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $conn->real_escape_string($_POST['username']);
@@ -10,8 +9,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($result->num_rows > 0) {
         $row = $result->fetch_assoc();
         if (password_verify($password, $row['password'])) {
-            $_SESSION['username'] = $username;
-            header("Location: welcome.php");
+            $_SESSION['Username'] = $username;
+            header("Location: index.php");
         } else {
             echo "Invalid password.";
         }
@@ -71,16 +70,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <!-- LOGIN FORM-->
 
 <div class="containerLogin" id="containerLogin">
-	
 	<div class="form-container sign-in-container">
+  <form action="php/login.php" method="post">
 		<form action="#">
+			<h1><i class="fa fa-user"></i></h1>
 			<h1>Sign In</h1>
-			<input type="email" placeholder="Email" />
-			<input type="password" placeholder="Password" />
-			<a href="CUSTresetpass.html">Forgot your password?</a>
-			<a href="CUSTindex.html"><button>Sign In</button></a>
-			<a href="ADsignIn.html"><i class="fa fa-user"></i>Sign In as Admin</a>
+
+      <?php if(isset($_GET['error'])){ ?>
+    		<div class="alert alert-danger" role="alert">
+			  <?php echo $_GET['error']; ?>
+			</div>
+		    <?php } ?>
+        
+			<input type="email" placeholder="Email" name="uname"
+      value="<?php echo (isset($_GET['uname']))?$_GET['uname']:"" ?>"> 
+			<input type="password" placeholder="Password" name="pass">
+			<a href="Adreset-pass.php"><i>Forgot your password?</i></a>
+			<button type="submit">Sign In</button>
+			<p>Not a user?<a href="ADsignIn.php"> Sign In as Admin</a></p>
 		</form>
+  </form>
 	</div>
 	<div class="overlay-container">
 		<div class="overlay">
