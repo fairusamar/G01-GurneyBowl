@@ -8,6 +8,7 @@ if (isset($_SESSION['id']) && isset($_SESSION['fname'])) {
 <html>
 <head>
 	<title>Change Password</title>
+	<link rel="icon" type="image/x-icon" href="images/gbbslogo.png">
 	<link rel="stylesheet" type="text/css" href="css/passstyle.css">
 </head>
 <body>

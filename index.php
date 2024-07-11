@@ -77,7 +77,7 @@ if (isset($_POST["submit"])) {
           <li class="nav-item"> <a class="nav-link" href="service.html">Services</a> </li>
           <li class="nav-item"> <a class="nav-link" href="#contact">Contact Us</a> </li>
             <div class="nav-booknow-btn">
-            <li><a href="signup.html" class="btn text-uppercase btn-outline-danger btn-lg mb-3 wow"><b>BOOK NOW</b></a></li>
+            <li><a href="signUp.php" class="btn text-uppercase btn-outline-danger btn-lg mb-3 wow"><b>BOOK NOW</b></a></li>
             </div>
         
         </ul>
@@ -90,7 +90,7 @@ if (isset($_POST["submit"])) {
       <div class="quote-box pl-5 pr-5 wow bounceInRight">
         <h2> WELCOME TO <br><span>GURNEY BOWL BOOKING SYSTEM</span> </h2>
       </div>
-      <a href="" class="btn text-uppercase btn-outline-danger btn-lg mr-3 mb-3 wow bounceInUp">What's new</a> <a href="signup.html" class="btn text-uppercase btn-outline-danger btn-lg mb-3 wow bounceInDown">BOOK NOW</a> </div>
+      <a href="eventpromo.html" class="btn text-uppercase btn-outline-danger btn-lg mr-3 mb-3 wow bounceInUp">What's new</a> <a href="signUp.php" class="btn text-uppercase btn-outline-danger btn-lg mb-3 wow bounceInDown">BOOK NOW</a> </div>
   </div>
 </div>
 <div class="container-fluid fh5co-network">

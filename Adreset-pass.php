@@ -5,12 +5,12 @@ session_start();
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Change Password</title>
+	<title>Reset Password</title>
 	<link rel="stylesheet" type="text/css" href="css/passstyle.css">
 </head>
 <body style="background:green;">
     <form action="Adforgot-pass.php" method="post">
-     	<h2>Change Password</h2>
+     	<h2>Reset Password</h2>
      	<?php if (isset($_GET['error'])) { ?>
      		<p class="error"><?php echo $_GET['error']; ?></p>
      	<?php } ?>

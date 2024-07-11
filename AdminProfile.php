@@ -32,16 +32,17 @@ $user = getUserById($_SESSION['id'], $conn);
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>                        
       </button>
-      <a class="navbar-brand" href="AdminDashboard.html"><img src="logo.jpg" style="width:42px; height: 42px;"
+      <a class="navbar-brand" href="AdminDashboard.php"><img src="images/gbbslogo.png" style="width:42px; height: 42px;"
         >GURNEY BOWL</a>
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
-        <li><a href="AdminDashboard.html">Dashboard</a></li>
-        <li><a href="AdminBookingHistory.html">Booking History</a></li>
+      <li><a href="AdminDashboard.php">Dashboard</a></li>
+        <li><a href="AdminBookingHistory.php">Booking History</a></li>
         <li><a href="#section3">Customer List</a></li>
         <li><a href="#section4">Events</a></li>
         <li><a href="#section5">Availability</a></li>
+        <li><a href="Adfeedback.php">Feedback</a></li>
         <li class="active"><a href="AdminProfile.php">Profile</a></li>
         <li><a href="ADDAd.php">Add New Profile</a></li>
       </ul>
@@ -52,15 +53,16 @@ $user = getUserById($_SESSION['id'], $conn);
 <div class="container-fluid">
   <div class="row content">
     <div class="col-sm-3 sidenav hidden-xs" id="wuttheside">
-      <h2><a href="AdminDashboard.html"><img src="logo.jpg" style="width:45px; height: 45px;"
+      <h2><a href="AdminDashboard.php"><img src="images/gbbslogo.png" style="width:45px; height: 45px;"
         ></a>GURNEY BOWL</h2>
       <ul class="nav nav-pills nav-stacked">
-        <li><a href="AdminDashboard.html">Dashboard</a></li>
-        <li><a href="AdminBookingHistory.html">Booking History</a></li>
+      <li><a href="AdminDashboard.php">Dashboard</a></li>
+        <li><a href="AdminBookingHistory.php">Booking History</a></li>
         <li><a href="#section3">Customer List</a></li>
         <li><a href="#section4">Events</a></li>
         <li><a href="#section5">Availability</a></li>
-        <li class="active"><a href="AdminProfile.php" class="Profile">Profile</a></li>
+        <li><a href="Adfeedback.php">Feedback</a></li>
+        <li class="active"><a href="AdminProfile.php">Profile</a></li>
         <li><a href="ADDAd.php">Add New Profile</a></li>
       </ul><br>
     </div>
@@ -98,7 +100,7 @@ $user = getUserById($_SESSION['id'], $conn);
             </div>
             <a href="EditAdminProf.php" class="btn btn-primary">
               Edit Profile</a>
-            <a href="change-password.php" class="btn btn-warning">Change Password</a>
+            <a href="Adchange-password.php" class="btn btn-warning">Change Password</a>
             <a href="logout.php" class="btn btn-danger">Logout</a>
         </div>
       </div>

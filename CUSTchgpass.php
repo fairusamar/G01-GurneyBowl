@@ -1,3 +1,14 @@
+<?php 
+session_start();
+
+if (isset($_SESSION['ID']) && isset($_SESSION['Email'])) {
+
+include "custdb_conn.php";
+include "php/customer.php";
+$user = getUserById($_SESSION['ID'], $conn);
+
+
+ ?>
 <!doctype html>
 <!--
 	Fox by FreeHTML5.co
@@ -82,22 +93,17 @@
     background: #ffffff;
     color: #2e323c;
      }
-     
-     .form-group i{
-         padding-right: 20px;
-         font-size: 20px;
-         padding-left: 20px;
-         color: #8F0040;
-     }
      .form-group label{
          font-weight: bold;
          text-transform: uppercase;
+         font-size: 16px;
          letter-spacing: 1px;
      }
-     
-     .form-group p{
-         color: grey;
-         padding-left: 64px;
+     .form-group .gender span{
+         font-weight: normal;
+         text-transform: capitalize;
+         letter-spacing: normal;
+         font-size: 15px;
      }
 
      .card {
@@ -112,15 +118,36 @@
          padding-bottom: 20px;
          font-size: 30px;
          font-weight: 800;
-         color: #8F0040 !important;
+         color: #26408B !important;
          font-weight: bolder !important;
      }
      
      .btn{
          position: relative;
          bottom: -2px;
-         color: black;
          
+     }
+     .btn-primary {
+         font-weight: bold !important;
+         
+        color: white !important;
+        background-color: #26408B !important;
+        border-color: #26408B !important;
+         
+     }
+     .btn-primary:hover{
+         font-weight: bold;
+        color: black !important;
+        background-color: #8FA3E0 !important;
+        border-color: #8FA3E0!important;
+         transition: 0.2s;
+     }
+     
+     .btn-secondary:hover{
+         color: black !important;
+        background-color: lightgrey!important;
+        border-color: lightgrey !important;
+         transition: 0.2s;
      }
      
      /*GENDER RADIO BUTTON CSS*/
@@ -161,6 +188,14 @@
          box-shadow: inset 0 0 0 10px #00005c;
      }
      
+     /* image for avatar */
+     #imgp{
+        border-radius: 50%;
+        vertical-align: middle;
+        width: 80px;
+        height: 80px;
+     }
+
      /*RESPONSIVE WEB DESIGN*/
      @media only screen and (min-width: 600px) {
   /* For tablets: */
@@ -215,11 +250,12 @@
     
 </head>
 <body>
+<?php if ($user) { ?>
 <div class="container-fluid pl-0 pr-0 bg-img clearfix parallax-window2" data-parallax="scroll" >
   <nav class="navbar navbar-expand-md navbar-dark">
     <div class="container"> 
       <!-- Brand --> 
-      <a class="navbar-brand mr-auto" href="index.html"><img src="about/images/gbbslogo.png" alt="GBBS" width="100px" height="100px"/></a>
+      <a class="navbar-brand mr-auto" href="CUSTindex.php"><img src="about/images/gbbslogo.png" alt="GBBS" width="100px" height="100px"/></a>
         
       
       <!-- Toggler/collapsibe Button -->
@@ -241,7 +277,7 @@
               <a class="nav-link" href="#contact">Contact Us</a> 
             </li>  
               <li class="nav-item"> 
-              <a class="nav-link"><i class="userdropdown fa fa-user-circle" style = "font-size: 35px"></i></a> 
+              <a class="nav-link" href="CUSTviewprofile.php"><i class="userdropdown fa fa-user-circle" style = "font-size: 35px"></i></a> 
             </li>      
         </ul>
         
@@ -262,18 +298,18 @@
                 <div class="account-settings">
                     <div class="user-profile">
                         <div class="user-avatar">
-                        <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Maxwell Admin">
+                        <img src="upload/<?=$user['pp']?>" alt="avatar" id="imgp">
                         </div>
-                        <h5 class="user-name">Yuki Hayashi</h5>
+                        <h5 class="user-name"><?=$user['Username']?></h5>
                     </div>
                     <div class="about">
-                        <a href="CUSTviewprofile.html"><h5>View Profile</h5></a>
+                        <a href="CUSTviewprofile.php"><h5>View Profile</h5></a>
                         <hr>
-                        <a href="CUSTeditprofile.html"><h5>Edit Profile</h5></a>
+                        <a href="CUSTeditprofile.php"><h5>Edit Profile</h5></a>
                         <hr>
-                        <a href="CUSTchgpass.html"><h5>Change Password</h5></a>
+                        <a href="CUSTchgpass.php"><h5>Change Password</h5></a>
                         <hr>
-                        <a href="index.html"><h5>Sign Out</h5></a>
+                        <a href="index.php"><h5>Sign Out</h5></a>
                     </div>
                 </div>
                 </div>
@@ -284,47 +320,63 @@
             <div class="card-body">
             <div class="row gutters">
                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                   <div class="userheader">
-                       <h6 class="mb-2 text-primary" style="text-align: center;">USER PROFILE<hr></h6>
-                       
+                    <div class="userheader">
+                    <form action="custchange-p.php" method="post">
+                       <h6 class="mb-2 text-primary" style="text-align: center;">CHANGE PASSWORD<hr></h6>
                    </div>
-                    
                 </div>
                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                     <div class="form-group">
-                        <i class="fa fa-user"></i><label for="fullName">Username</label>
-                        <p>Yuki Hayashi</p>
+                        <!-- ERROR -->
+                <?php if (isset($_GET['error'])) { ?>
+                    <div class="alert alert-danger" role="alert">
+                     <?php echo $_GET['error']; ?>
                     </div>
-                </div>
-                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                    <div class="form-group">
-                        <i class="fa fa-envelope"></i><label for="eMail">Email Address</label>
-                        <p>yukihayashi@gmail.com</p>
+     	            <?php } ?>
+                    <!-- SUCCESS -->
+     	            <?php if (isset($_GET['success'])) { ?>
+                        <div class="alert alert-success" role="alert">
+                     <?php echo $_GET['success']; ?>
                     </div>
-                </div>
-                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                    <div class="form-group">
-                        <i class="fa fa-phone"></i><label for="phone">Phone Number</label>
-                        <p>012-34567890</p>
-                    </div>
-                </div>
-                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                    <div class="form-group">
-                    <i class="fa fa-birthday-cake"></i><label for="date">Date of Birth</label>
-                       <p>02/10/1999</p>
-                    </div>
-                </div>
-                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                    <div class="form-group">
-                    <i class="fa fa-venus-mars"></i><label for="website">Gender</label>
-                        <p>Female</p>
+                    <?php } ?>
+                        <label for="fullName">old password</label>
+                        <input type="password" class="form-control" id="fullName" placeholder="Enter old password"
+                        name="op">
                     </div>
                 </div>
                 
-                
+              
                 
             </div>
+               <div class="row gutters">
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label for="eMail">new password</label>
+                        <input type="password" class="form-control" id="eMail" placeholder="Enter new password"
+                        name="np">
+                    </div>
+                </div>
+                </div>
                 
+                <div class="row gutters">
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label for="eMail">confirm new password</label>
+                        <input type="password" class="form-control" id="eMail" placeholder="Confirm new password"
+                        name="c_np">
+                    </div>
+                </div>
+                </div>
+                
+                <div class="row gutters">
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                        <div class="text-right">
+                            <button type="button" id="submit" name="cancel" class="btn btn-secondary">Cancel</button>
+                            <button type="submit" id="submit" name="submit" class="btn btn-primary">Update</button>
+                        </div>
+                    </div>
+                </div>
+                </form>
             </div>
         </div>
     </div>
@@ -369,5 +421,15 @@
 <script src="js/wow.js"></script>
 <script src="js/main.js"></script>
 
+<?php }else { 
+     header("Location: CUSTchgpass.php");
+     exit;
+    } ?>
+
 </body>
 </html>
+
+<?php }else { 
+     header("Location: CUSTchgpass.php");
+     exit;
+    } ?>
