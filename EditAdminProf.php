@@ -13,7 +13,7 @@ $user = getUserById($_SESSION['id'], $conn);
 <head>
   <title>Edit Admin Profile</title>
   <meta charset="utf-8">
-  <link rel="icon" type="image/x-icon" href="logo.jpg">
+  <link rel="icon" type="image/x-icon" href="images/gbbslogo.png">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="css/adstyle.css" type="text/css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -38,9 +38,8 @@ $user = getUserById($_SESSION['id'], $conn);
       <ul class="nav navbar-nav">
         <li><a href="AdminDashboard.php">Dashboard</a></li>
         <li><a href="AdminBookingHistory.php">Booking History</a></li>
-        <li><a href="#section3">Customer List</a></li>
-        <li><a href="#section4">Events</a></li>
-        <li><a href="#section5">Availability</a></li>
+        <li><a href="Adcustlist.php">Customer List</a></li>
+        <li><a href="Adservice.php">Service</a></li>
         <li><a href="Adfeedback.php">Feedback</a></li>
         <li class="active"><a href="AdminProfile.php" class="Profile">Profile</a></li>
         <li><a href="ADDAd.php">Add New Profile</a></li>
@@ -57,9 +56,8 @@ $user = getUserById($_SESSION['id'], $conn);
       <ul class="nav nav-pills nav-stacked">
         <li><a href="AdminDashboard.php">Dashboard</a></li>
         <li><a href="AdminBookingHistory.php">Booking History</a></li>
-        <li><a href="#section3">Customer List</a></li>
-        <li><a href="#section4">Events</a></li>
-        <li><a href="#section5">Availability</a></li>
+        <li><a href="Adcustlist.php">Customer List</a></li>
+        <li><a href="Adservice.php">Service</a></li>
         <li><a href="Adfeedback.php">Feedback</a></li>
         <li class="active"><a href="AdminProfile.php" class="Profile">Profile</a></li>
         <li><a href="ADDAd.php">Add New Profile</a></li>
@@ -67,7 +65,7 @@ $user = getUserById($_SESSION['id'], $conn);
     </div>
     <br>
 
-    <div class="col-sm-10">
+    <div class="col-sm-8">
         <div class="well well-lg">
         <form class="shadow w-450 p-3" 
               action="php/edit.php" 
@@ -142,14 +140,15 @@ $user = getUserById($_SESSION['id'], $conn);
       </div>
   </div>
 </div>
-
 <footer class="footercopy">
   <div class="copyright">&copy;2024- <strong>Residensi UTMKL</strong></div>
 </div>
 </footer>
-<?php }else{ 
-        header("Location: AdminProfile.php");
-        exit;
+
+<?php 
+}else{ 
+  header("Location: AdminProfile.php");
+  exit;
 
     } ?>
 </body>

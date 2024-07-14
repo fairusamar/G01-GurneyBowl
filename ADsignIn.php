@@ -11,13 +11,13 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>Sign In - Gurney Bowl Booking System</title>
-    <link rel="shortcut icon" href="css/adminpages/ADsignIn/images/gbbslogo.png">
+    <link rel="shortcut icon" href="adminpages/ADsignIn/images/gbbslogo.png">
 
   <!-- Bootstrap CSS -->
-  <link href="css/adminpages/ADsignIn/css/animate.css" rel="stylesheet">
-  <link rel="stylesheet" href="css/adminpages/ADsignIn/css/bootstrap.min.css" type="text/css">
+  <link href="adminpages/ADsignIn/css/animate.css" rel="stylesheet">
+  <link rel="stylesheet" href="adminpages/ADsignIn/css/bootstrap.min.css" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet">
-  <link rel="stylesheet" href="css/adminpages/ADsignIn/css/style.css">
+  <link rel="stylesheet" href="adminpages/ADsignIn/css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     
 </head>
@@ -26,7 +26,7 @@
   <nav class="navbar navbar-expand-md navbar-dark">
     <div class="container"> 
       <!-- Brand --> 
-      <a class="navbar-brand mr-auto" href="index.php"><img src="css/signIn/images/gbbslogo.png" alt="GBBS" width="100px" height="100px"/></a>
+      <a class="navbar-brand mr-auto" href="index.php"><img src="signIn/images/gbbslogo.png" alt="GBBS" width="100px" height="100px"/></a>
         
       
       <!-- Toggler/collapsibe Button -->
@@ -69,9 +69,9 @@
 			<input type="password" placeholder="Password" name="pass">
 			<a href="Adreset-pass.php"><i>Forgot your password?</i></a>
 			<button type="submit">Sign In</button>
-			<p>Not an admin?<a href="signIn.html"> Sign In as User</a></p>
+			<p>Not an admin?<a href="SignIn.php"> Sign In as User</a></p>
 		</form>
-  </form>
+  </form>2
 	</div>
 	<div class="overlay-container">
 		<div class="overlay">
@@ -106,7 +106,7 @@
                 <li><a href="eventpromo.html">Events &amp; Promotions</a></li>
                 <li><a href="about.html">About Us</a></li>
                 <li><a href="service.html">Services</a></li>
-                <li><a href="index.php#contact">Contact Us</a></li>
+                <li><a href="index.html#contact">Contact Us</a></li>
             </ul>
         </div>
     </div>

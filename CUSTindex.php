@@ -70,7 +70,7 @@ if (isset($_POST["submit"])) {
   <nav class="navbar navbar-expand-md navbar-dark">
     <div class="container"> 
       <!-- Brand --> 
-      <a class="navbar-brand mr-auto" href="CUSTindex.html"><img src="customerpages/index/images/gbbslogo.png" alt="GBBS" width="100px" height="100px"/></a>
+      <a class="navbar-brand mr-auto" href="CUSTindex.php"><img src="customerpages/index/images/gbbslogo.png" alt="GBBS" width="100px" height="100px"/></a>
         
       
       <!-- Toggler/collapsibe Button -->
@@ -106,7 +106,7 @@ if (isset($_POST["submit"])) {
       <div class="quote-box pl-5 pr-5 wow bounceInRight">
         <h2> WELCOME TO <br><span>GURNEY BOWL BOOKING SYSTEM</span> </h2>
       </div>
-      <a href="" class="btn text-uppercase btn-outline-danger btn-lg mr-3 mb-3 wow bounceInUp">What's new</a> <a href="signUp.html" class="btn text-uppercase btn-outline-danger btn-lg mb-3 wow bounceInDown">BOOK NOW</a> </div>
+      <a href="CUSTeventpromo.html" class="btn text-uppercase btn-outline-danger btn-lg mr-3 mb-3 wow bounceInUp">What's new</a> <a href="book.php" class="btn text-uppercase btn-outline-danger btn-lg mb-3 wow bounceInDown">BOOK NOW</a> </div>
   </div>
 </div>
 <div class="container-fluid fh5co-network">
@@ -131,7 +131,7 @@ if (isset($_POST["submit"])) {
       <h2 class="wow bounceInLeft" data-wow-delay=".25s">EVENTS AND PROMOTIONS</h2>
       <hr/>
       <p class="wow bounceInRight" data-wow-delay=".25s">Join us at Gurney Bowl for exciting events and promotions all year round. From tournaments and leagues to family fun nights and special discounts, there's always something happening. Stay updated on our website and social media for the latest news.</p>
-      <a href="CUSTeventpromo.html" class="btn btn-lg btn-outline-danger d-inline-block text-center mx-auto wow bounceInDown">Learn More</a> </div>
+      <a href="eventpromo.html" class="btn btn-lg btn-outline-danger d-inline-block text-center mx-auto wow bounceInDown">Learn More</a> </div>
   </div>
 </div>
 <div class="container-fluid fh5co-content-box">
@@ -185,30 +185,25 @@ if (isset($_POST["submit"])) {
       <div class="col-md-6 footer2 wow bounceInUp" data-wow-delay=".25s" id="contact">
         <div class="form-box">
           <h4>FEEDBACK FORM</h4>
-          <table class="table table-responsive d-table">
-            <tr>
-              <td><input type="email" class="form-control pl-0" placeholder="EMAIL" /></td>
-            </tr>
-            <tr>
-              <td colspan="2"></td>
-            </tr>
-            
-            <tr>
-              <td colspan="2"><input type="text" class="form-control pl-0" placeholder="FEEDBACK" /></td>
-            </tr>
-            <tr>
-              <td colspan="2"></td>
-            </tr>
-              <tr>
-              <td colspan="2"></td>
-            </tr>
-              <tr>
-              <td colspan="2"></td>
-            </tr>
-            <tr>
-              <td colspan="2" class="text-center pl-0"><button type="submit" class="btn btn-dark">SUBMIT</button></td>
-            </tr>
-          </table>
+          <form action="" method="post" enctype="multipart/form-data">
+    <table class="table table-responsive d-table">
+      <tr>
+        <td><input type="email" class="form-control pl-0" name="Email" placeholder="EMAIL" required></td>
+      </tr>
+      <tr>
+        <td colspan="2"></td>
+      </tr>
+      <tr>
+        <td colspan="2"><input type="text" class="form-control pl-0" name="Suggestion" placeholder="FEEDBACK" required></td>
+      </tr>
+      <tr>
+        <td colspan="2"></td>
+      </tr>
+      <tr>
+        <td colspan="2" class="text-center pl-0"><button type= "submit" name= "submit" class="btn btn-dark">SUBMIT</button></td>
+      </tr>
+    </table>
+  </form>
         </div>
       </div>
       <div class="col-md-3 footer3 wow bounceInRight" data-wow-delay=".25s">
@@ -251,5 +246,15 @@ if (isset($_POST["submit"])) {
 <script src="js/wow.js"></script>
 <script src="js/main.js"></script>
 
+<?php }else { 
+     header("Location: SignIn.php");
+     exit;
+    } ?>
+
 </body>
 </html>
+
+<?php } else {
+	header("Location: SignIn.php");
+	exit;
+} ?>

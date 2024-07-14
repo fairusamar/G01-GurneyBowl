@@ -299,7 +299,9 @@ $user = getUserById($_SESSION['ID'], $conn);
                         <hr>
                         <a href="CUSTchgpass.php"><h5>Change Password</h5></a>
                         <hr>
-                        <a href="index.php"><h5>Sign Out</h5></a>
+                        <a href="CUSTbooksum.php"><h5>Booking Summary</h5></a>
+                        <hr>
+                        <a href="CUSTsignout.php"><h5>Sign Out</h5></a>
                     </div>
                 </div>
                 </div>
@@ -314,6 +316,7 @@ $user = getUserById($_SESSION['ID'], $conn);
                     <form action="php/custedit.php" 
                             method="post"
                             enctype="multipart/form-data">
+
                        <h6 class="mb-2 text-primary" style="text-align: center;">EDIT PROFILE<hr></h6>
                        <!-- error -->
                  <?php if(isset($_GET['error'])){ ?>
@@ -331,7 +334,7 @@ $user = getUserById($_SESSION['ID'], $conn);
                    </div>
                 </div>
                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                <div class="form-group">
+                    <div class="form-group">
                         <label for="fullName">Username</label>
                         <input type="text" class="form-control" id="fullName" placeholder="Enter username"
                         name="username" value="<?php echo $user['Username']?>">
@@ -396,7 +399,7 @@ $user = getUserById($_SESSION['ID'], $conn);
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                         <div class="text-right">
                             <button type="button" id="submit" name="cancel" class="btn btn-secondary">Cancel</button>
-                            <button type="button" id="submit" name="submit" class="btn btn-primary">Update</button>
+                            <button type="submit" id="submit" name="submit" class="btn btn-primary">Update</button>
                         </div>
                     </div>
                 </div>
@@ -444,6 +447,7 @@ $user = getUserById($_SESSION['ID'], $conn);
 <script src="js/parallax.js"></script>
 <script src="js/wow.js"></script>
 <script src="js/main.js"></script>
+
 <?php }else { 
      header("Location: CUSTindex.php");
      exit;

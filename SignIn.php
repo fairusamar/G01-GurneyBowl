@@ -63,7 +63,7 @@
 			<input type="email" placeholder="Email" name="username"
       value="<?php echo (isset($_GET['username']))?$_GET['username']:"" ?>"> 
 			<input type="password" placeholder="Password" name="password">
-			<a href="#"><i>Forgot your password?</i></a>
+			<a href="CUSTreset-pass.php"><i>Forgot your password?</i></a>
 			<button type="submit">Sign In</button>
 			<p>Not a user?<a href="ADsignIn.php"> Sign In as Admin</a></p>
 		</form>

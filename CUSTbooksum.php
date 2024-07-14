@@ -4,8 +4,8 @@ session_start();
 if (isset($_SESSION['ID']) && isset($_SESSION['Email'])) {
 
 include "custdb_conn.php";
-include "php/customer.php";
-$user = getUserById($_SESSION['ID'], $conn);
+include "php/CUSTbookdb.php";
+$user = getUserById($_SESSION['Email'], $conn);
 
 
  ?>
@@ -21,7 +21,7 @@ $user = getUserById($_SESSION['ID'], $conn);
  
  <style type="text/css">
     	
-  /*USER PROFILE CSS*/   
+  /*BOOKING CSS*/   
      
      body {
     margin: 0;
@@ -29,6 +29,10 @@ $user = getUserById($_SESSION['ID'], $conn);
     background: #f5f6fa;
     position: relative;
     height: 100%;
+     }
+     
+     .row{
+         justify-content: center;
      }
      .container{
          padding-bottom: 50px;
@@ -93,17 +97,28 @@ $user = getUserById($_SESSION['ID'], $conn);
     background: #ffffff;
     color: #2e323c;
      }
+     
+     .form-group i{
+         padding-right: 10px;
+         font-size: 20px;
+         
+         color: #8F0040;
+     }
      .form-group label{
          font-weight: bold;
          text-transform: uppercase;
          font-size: 16px;
          letter-spacing: 1px;
      }
-     .form-group .gender span{
+     
+     
+     .form-group .time span{
          font-weight: normal;
          text-transform: capitalize;
          letter-spacing: normal;
          font-size: 15px;
+         justify-content: space-evenly;
+         color: #2e323c;
      }
 
      .card {
@@ -118,31 +133,29 @@ $user = getUserById($_SESSION['ID'], $conn);
          padding-bottom: 20px;
          font-size: 30px;
          font-weight: 800;
-         color: #26408B !important;
+         color: #dc3545 !important;
          font-weight: bolder !important;
      }
      
      .btn{
          position: relative;
-         bottom: -2px;
-         
+         bottom: 10px;
+         right: 10px;
      }
      .btn-primary {
          font-weight: bold !important;
-         
-        color: white !important;
-        background-color: #26408B !important;
-        border-color: #26408B !important;
+        color: black!important;
+        background-color: #FFC800 !important;
+        border-color: #FFC800 !important;
          
      }
      .btn-primary:hover{
          font-weight: bold;
-        color: black !important;
-        background-color: #8FA3E0 !important;
-        border-color: #8FA3E0!important;
+        color: red!important;
+        background-color: #FFD747 !important;
+        border-color: #FFD747!important;
          transition: 0.2s;
      }
-     
      .btn-secondary:hover{
          color: black !important;
         background-color: lightgrey!important;
@@ -150,9 +163,9 @@ $user = getUserById($_SESSION['ID'], $conn);
          transition: 0.2s;
      }
      
-     /*GENDER RADIO BUTTON CSS*/
+     /*TIME RADIO BUTTON CSS*/
      
-     .genderradio{
+     .timeradio{
          display: flex;
      }
      input[type="radio"]{
@@ -186,16 +199,9 @@ $user = getUserById($_SESSION['ID'], $conn);
      }
      input[type="radio"]:checked + span:before{
          box-shadow: inset 0 0 0 10px #00005c;
+         
      }
      
-     /* image for avatar */
-     #imgp{
-        border-radius: 50%;
-        vertical-align: middle;
-        width: 80px;
-        height: 80px;
-     }
-
      /*RESPONSIVE WEB DESIGN*/
      @media only screen and (min-width: 600px) {
   /* For tablets: */
@@ -251,6 +257,7 @@ $user = getUserById($_SESSION['ID'], $conn);
 </head>
 <body>
 <?php if ($user) { ?>
+
 <div class="container-fluid pl-0 pr-0 bg-img clearfix parallax-window2" data-parallax="scroll" >
   <nav class="navbar navbar-expand-md navbar-dark">
     <div class="container"> 
@@ -288,93 +295,86 @@ $user = getUserById($_SESSION['ID'], $conn);
 </div>
 
 
-<!--USER PROFILE-->
+<!--BOOKING-->
 
 <div class="container">
     <div class="row gutters">
-        <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12">
-            <div class="card h-100">
-                <div class="card-body">
-                <div class="account-settings">
-                    <div class="user-profile">
-                        <div class="user-avatar">
-                        <img src="upload/<?=$user['pp']?>" alt="avatar" id="imgp">
-                        </div>
-                        <h5 class="user-name"><?=$user['Username']?></h5>
-                    </div>
-                    <div class="about">
-                        <a href="CUSTviewprofile.php"><h5>View Profile</h5></a>
-                        <hr>
-                        <a href="CUSTeditprofile.php"><h5>Edit Profile</h5></a>
-                        <hr>
-                        <a href="CUSTchgpass.php"><h5>Change Password</h5></a>
-                        <hr>
-                        <a href="CUSTbooksum.php"><h5>Booking Summary</h5></a>
-                        <hr>
-                        <a href="CUSTsignout.php"><h5>Sign Out</h5></a>
-                    </div>
-                </div>
-                </div>
-            </div>
-        </div>
+       
     <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12">
         <div class="card h-100">
             <div class="card-body">
             <div class="row gutters">
                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                     <div class="userheader">
-                    <form action="custchange-p.php" method="post">
-                       <h6 class="mb-2 text-primary" style="text-align: center;">CHANGE PASSWORD<hr></h6>
+                        <form action="php/bookfunc.php" 
+                            method="post">
+                       <h6 class="mb-2 text-primary" style="text-align: center;">BOOK SUMMARY<hr></h6>
                    </div>
                 </div>
                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                     <div class="form-group">
-                        <!-- ERROR -->
-                <?php if (isset($_GET['error'])) { ?>
-                    <div class="alert alert-danger" role="alert">
-                     <?php echo $_GET['error']; ?>
-                    </div>
-     	            <?php } ?>
-                    <!-- SUCCESS -->
-     	            <?php if (isset($_GET['success'])) { ?>
-                        <div class="alert alert-success" role="alert">
-                     <?php echo $_GET['success']; ?>
-                    </div>
-                    <?php } ?>
-                        <label for="fullName">old password</label>
-                        <input type="password" class="form-control" id="fullName" placeholder="Enter old password"
-                        name="op">
+                       <i class="fa fa-calendar"></i>
+                        <label for="date">Preferred Date</label>
+                        <div class="DOB">
+                            <p type="date" class="form-control" name="dp"><?=$user['play_date']?></p>
+                        </div>
                     </div>
                 </div>
                 
-              
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                    <div class="form-group">
+                       <i class="fa fa-user"></i>
+                        <label for="number">Number of Pax</label>
+                        <p type="number" class="form-control" name="pax"><?=$user['pax_player']?></p>
+                    </div>
+                </div>
+                
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                    <div class="form-group">
+                    <i class="fa fa-clock"></i>
+                    <label for="website">Preferred Time</label>
+                        <div class="timeradio">
+                           <div class="form-group">
+                            <label class="time">
+                                <p type="text" class="form-control" name="time"><?=$user['Time']?></p>
+                            </label>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                    <div class="form-group">
+                       <i class="fas fa-shoe-prints"></i>
+                        <label for="number">Number of Bowling Shoes</label>
+                        <p type="number" class="form-control" name="bowlshoes"><?=$user['bowl_shoes']?></p>
+                    </div>
+
+                      <div class="form-group">
+                       <i class="fa fa-bowling-ball"></i>
+                        <label for="number">Number of Lane</label>
+                        <p type="number" class="form-control" name="num_lane"><?=$user['num_lane']?></p>
+                    </div>
+                    
+                    <div class="form-group">
+                    <i class="fa fa-envelope"></i>
+                        <label for="eMail">Email Address</label>
+                        <p type="email" class="form-control" id="eMail" placeholder="Email address"
+                        name="Email"><?=$user['email']?></p>
+                    </div>
+                </div>
+                
+                
+                </div>
+               
+                
+                
                 
             </div>
-               <div class="row gutters">
-                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                    <div class="form-group">
-                        <label for="eMail">new password</label>
-                        <input type="password" class="form-control" id="eMail" placeholder="Enter new password"
-                        name="np">
-                    </div>
-                </div>
-                </div>
-                
-                <div class="row gutters">
-                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                    <div class="form-group">
-                        <label for="eMail">confirm new password</label>
-                        <input type="password" class="form-control" id="eMail" placeholder="Confirm new password"
-                        name="c_np">
-                    </div>
-                </div>
-                </div>
-                
                 <div class="row gutters">
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                         <div class="text-right">
-                            <button type="button" id="submit" name="cancel" class="btn btn-secondary">Cancel</button>
-                            <button type="submit" id="submit" name="submit" class="btn btn-primary">Update</button>
+                            <a href="CUSTviewprofile.php"><button type="button" id="submit" name="submit" class="btn btn-primary">Home</button></a>
                         </div>
                     </div>
                 </div>
@@ -424,14 +424,14 @@ $user = getUserById($_SESSION['ID'], $conn);
 <script src="js/main.js"></script>
 
 <?php }else { 
-     header("Location: CUSTchgpass.php");
+     header("Location: CUSTbooksum.php");
      exit;
     } ?>
 
 </body>
 </html>
 
-<?php }else { 
-     header("Location: CUSTchgpass.php");
-     exit;
-    } ?>
+<?php } else {
+	header("Location: index.php");
+	exit;
+} ?>

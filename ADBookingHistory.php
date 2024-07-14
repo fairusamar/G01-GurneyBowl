@@ -14,14 +14,14 @@ if (!$conn) {
 session_start();
 
 // Fetch feedback data from the database
-$query = "SELECT FeedbackID, Email, Suggestion FROM feedback";
+$query = "SELECT email, play_date, Time, pax_player, bowl_shoes, num_lane FROM booking";
 $result = mysqli_query($conn, $query);
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Admin Dashboard</title>
+  <title>Booking History</title>
   <meta charset="utf-8">
   <link rel="icon" type="image/x-icon" href="images/gbbslogo.png">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -76,10 +76,10 @@ $result = mysqli_query($conn, $query);
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
         <li><a href="AdminDashboard.php">Dashboard</a></li>
-        <li><a href="ADBookingHistory.php">Booking History</a></li>
+        <li class="active"><a href="ADBookingHistory.php">Booking History</a></li>
         <li><a href="Adcustlist.php">Customer List</a></li>
         <li><a href="Adservice.php">Service</a></li>
-        <li class="active"><a href="Adfeedback.php">Feedback</a></li>
+        <li><a href="Adfeedback.php">Feedback</a></li>
         <li><a href="AdminProfile.php">Profile</a></li>
         <li><a href="ADDAd.php">Add New Profile</a></li>
       </ul>
@@ -94,10 +94,10 @@ $result = mysqli_query($conn, $query);
         ></a>GURNEY BOWL</h2>
       <ul class="nav nav-pills nav-stacked">
         <li><a href="AdminDashboard.php">Dashboard</a></li>
-        <li><a href="ADBookingHistory.php">Booking History</a></li>
+        <li class="active"><a href="ADBookingHistory.php">Booking History</a></li>
         <li><a href="Adcustlist.php">Customer List</a></li>
         <li><a href="Adservice.php">Service</a></li>
-        <li class="active"><a href="Adfeedback.php">Feedback</a></li>
+        <li><a href="Adfeedback.php">Feedback</a></li>
         <li><a href="AdminProfile.php">Profile</a></li>
         <li><a href="ADDAd.php">Add New Profile</a></li>
       </ul><br>
@@ -108,13 +108,17 @@ $result = mysqli_query($conn, $query);
       <div class="row">
         <div class="col-sm-8" style="width:100%;">
           <div class="well">
-            <h3 style="text-align:center;">Customers Feedback</h3>
+            <h3 style="text-align:center;">Booking History</h3>
             <br>
             <table class="feedback-box table">
                         <thead>
                             <tr>
                                 <th class="email-column">Email</th>
-                                <th>Suggestion</th>
+                                <th>Phone Number</th>
+                                <th>Date of Playing</th>
+                                <th>Time</th>
+                                <th>Pax</th>
+                                <th>Number of Lane</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -122,8 +126,12 @@ $result = mysqli_query($conn, $query);
                             if ($result && mysqli_num_rows($result) > 0) {
                                 while ($row = mysqli_fetch_assoc($result)) {
                                     echo "<tr>";
-                                    echo "<td>" . htmlspecialchars($row['Email']) . "</td>";
-                                    echo "<td>" . htmlspecialchars($row['Suggestion']) . "</td>";
+                                    echo "<td>" . htmlspecialchars($row['email']) . "</td>";
+                                    echo "<td>" . htmlspecialchars($row['play_date']) . "</td>";
+                                    echo "<td>" . htmlspecialchars($row['Time']) . "</td>";
+                                    echo "<td>" . htmlspecialchars($row['pax_player']) . "</td>";
+                                    echo "<td>" . htmlspecialchars($row['bowl_shoes']) . "</td>";
+                                    echo "<td>" . htmlspecialchars($row['num_lane']) . "</td>";
                                     echo "</tr>";
                                 }
                             } else {

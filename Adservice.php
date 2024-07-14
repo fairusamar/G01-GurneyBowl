@@ -2,17 +2,16 @@
 session_start();
 
 if (isset($_SESSION['id']) && isset($_SESSION['fname'])) {
-
 include "Addb_conn.php";
 include 'php/User.php';
-$user = getUserById($_SESSION['id'], $conn);
 
+$user = getUserById($_SESSION['id'], $conn);
 
  ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Admin Dashboard</title>
+  <title>Services</title>
   <meta charset="utf-8">
   <link rel="icon" type="image/x-icon" href="images/gbbslogo.png">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -37,12 +36,12 @@ $user = getUserById($_SESSION['id'], $conn);
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="AdminDashboard.php">Dashboard</a></li>
+        <li><a href="AdminDashboard.php">Dashboard</a></li>
         <li><a href="ADBookingHistory.php">Booking History</a></li>
         <li><a href="Adcustlist.php">Customer List</a></li>
-        <li><a href="Adservice.php">Service</a></li>
+        <li class="active"><a href="Adservice.php">Service</a></li>
         <li><a href="Adfeedback.php">Feedback</a></li>
-        <li><a href="AdminProfile.php">Profile</a></li>
+        <li><a href="AdminProfile.php" class="Profile">Profile</a></li>
         <li><a href="ADDAd.php">Add New Profile</a></li>
       </ul>
     </div>
@@ -55,86 +54,75 @@ $user = getUserById($_SESSION['id'], $conn);
       <h2><a href="AdminDashboard.php"><img src="images/gbbslogo.png" style="width:45px; height: 45px;"
         ></a>GURNEY BOWL</h2>
       <ul class="nav nav-pills nav-stacked">
-      <li class="active"><a href="AdminDashboard.php">Dashboard</a></li>
+        <li><a href="AdminDashboard.php">Dashboard</a></li>
         <li><a href="ADBookingHistory.php">Booking History</a></li>
         <li><a href="Adcustlist.php">Customer List</a></li>
-        <li><a href="Adservice.php">Service</a></li>
+        <li class="active"><a href="Adservice.php">Service</a></li>
         <li><a href="Adfeedback.php">Feedback</a></li>
-        <li><a href="AdminProfile.php">Profile</a></li>
+        <li><a href="AdminProfile.php" class="Profile">Profile</a></li>
         <li><a href="ADDAd.php">Add New Profile</a></li>
       </ul><br>
     </div>
     <br>
-    
+
     <div class="col-sm-8">
-      <div class="well">
-        <h4>Dashboard</h4>
-        <p>Welcome to the Gurney Bowl Admin Dashboard!</p>
-      </div>
+        <div class="well well-lg">
+        <form class="shadow w-450 p-3" 
+              action="php/serviceedit.php" 
+              method="post"
+              enctype="multipart/form-data">
 
-      <div class="row">
-        <div class="col-sm-3">
-          <div class="well">
-            <h4>Total Users</h4>
-            <p>6</p>
-          </div>
-        </div>
-
-        <div class="col-sm-3">
-          <div class="well">
-            <h4>Feedback</h4>
-            <p>4</p> 
-          </div>
-        </div>
-
-        <div class="col-sm-3">
-          <div class="well">
-            <h4>Booking History</h4>
-            <p>1</p>
-          </div> 
-        </div>
-
-        <div class="col-sm-3">
-          <div class="well">
-            <h4>Services</h4>
-            <p>2</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="col-sm-6">
-          <div class="well well-lg">
-            <h1>Availability Slot</h1><br>
-            <p></p> 
-            <p></p> 
-          </div>
-        </div>
-
-        <div class="col-sm-6">
-          <div class="well well-lg">
-            <h1>Events</h1><br>
-            <p>No Events</p> 
-            <p></p> 
-          </div>
-        </div>
+            <h1>Edit Services</h1>
+            <!-- error -->
+            <?php if(isset($_GET['error'])){ ?>
+            <div class="alert alert-danger" role="alert">
+              <?php echo $_GET['error']; ?>
+            </div>
+            <?php } ?>
+            
+            <!-- success -->
+            <?php if(isset($_GET['success'])){ ?>
+            <div class="alert alert-success" role="alert">
+              <?php echo $_GET['success']; ?>
+            </div>
+            <?php } ?>
+            <br>
+            <div class="well well-md" style="background-color:lightslategrey">
+              <div class="mb-3">
+              <label id="adprof">Services :</label><br>
+              <img src="images/pricelist.png" style="width:200px;height:300px;">
+              <br><br>
+            <input type="file"
+                   class="form-control"
+                   name="pp">
+            <input type="text"
+                   hidden="hidden" 
+                   name="old_pp"
+                   value="<?=$user['pp']?>" >
+            </div>
+            <br>
+            </div>
+            <button type="#" class="btn btn-primary">Update</button>
+            </form>
         </div>
       </div>
-    </div>
   </div>
 </div>
-
 <footer class="footercopy">
   <div class="copyright">&copy;2024- <strong>Residensi UTMKL</strong></div>
 </div>
 </footer>
-<?php }else { 
-     header("Location: ADsignIn.php");
-     exit;
+
+<?php 
+}else{ 
+  header("Location: Adservice.php");
+  exit;
+
     } ?>
 </body>
 </html>
-<?php } else {
-	header("Location: ADsignIn.php");
+
+<?php }else {
+	header("Location: login.php");
 	exit;
 } ?>

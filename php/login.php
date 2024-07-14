@@ -40,7 +40,7 @@ if(isset($_POST['uname']) &&
                  $_SESSION['fname'] = $fname;
                  $_SESSION['pp'] = $pp;
 
-                 header("Location: ../AdminDashboard.html");
+                 header("Location: ../AdminDashboard.php");
                  exit;
              }else {
                $em = "Incorect User name or password";

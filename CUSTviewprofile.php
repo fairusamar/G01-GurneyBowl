@@ -285,7 +285,9 @@ $user = getUserById($_SESSION['ID'], $conn);
                         <hr>
                         <a href="CUSTchgpass.php"><h5>Change Password</h5></a>
                         <hr>
-                        <a href="index.php"><h5>Sign Out</h5></a>
+                        <a href="CUSTbooksum.php"><h5>Booking Summary</h5></a>
+                        <hr>
+                        <a href="CUSTsignout.php"><h5>Sign Out</h5></a>
                     </div>
                 </div>
                 </div>

@@ -66,7 +66,7 @@ if (isset($_POST["submit"])) {
       <!-- Navbar links -->
       <div class="collapse navbar-collapse" id="collapsibleNavbar">
         <ul class="navbar-nav ml-auto">
-        <li class="nav-item"> <a class="nav-link" href="eventpromo.html">Events &amp; Promotions</a> </li>
+          <li class="nav-item"> <a class="nav-link" href="eventpromo.html">Events &amp; Promotions</a> </li>
           <li class="nav-item"> <a class="nav-link" href="about.html">About Us</a> </li>
           <li class="nav-item"> <a class="nav-link" href="service.html">Services</a> </li>
           <li class="nav-item"> <a class="nav-link" href="index.html"#contact>Contact Us</a> </li>
@@ -106,7 +106,7 @@ if (isset($_POST["submit"])) {
 				<h1>Join Us Today!</h1>
 				<p>Join our community! Fill in your details to start your journey with us.</p>
 				<p class="pNext"><br><br><br>Already a member? Sign in to access your account.</p>
-				<a href="signIn.html"><button class="ghost" id="signIn" >Sign In</button></a>
+				<a href="SignIn.php"><button class="ghost" id="signIn" >Sign In</button></a>
 			</div>
 			
 		</div>

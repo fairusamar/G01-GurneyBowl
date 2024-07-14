@@ -25,7 +25,7 @@ if(isset($_POST['fname']) &&
     	header("Location: ../EditAdminProf.php?error=$em");
 	    exit;
       }else if(empty($conw)){
-         $em = "User name is required";
+         $em = "Confirmation Word is required";
          header("Location: ../EditAdminProf.php?error=$em");
          exit;
     }else {

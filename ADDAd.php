@@ -3,7 +3,7 @@
 <head>
   <title>Adding New Admin</title>
   <meta charset="utf-8">
-  <link rel="icon" type="image/x-icon" href="css/adminpages/ADsignIn/images/gbbslogo.png">
+  <link rel="icon" type="image/x-icon" href="images/gbbslogo.png">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="css/adstyle.css" type="text/css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -20,11 +20,15 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>                        
       </button>
-      <li><a href="AdminDashboard.php">Dashboard</a></li>
-        <li><a href="AdminBookingHistory.php">Booking History</a></li>
-        <li><a href="#section3">Customer List</a></li>
-        <li><a href="#section4">Events</a></li>
-        <li><a href="#section5">Availability</a></li>
+      <a class="navbar-brand" href="AdminDashboard.php"><img src="images/gbbslogo.png" style="width:42px; height: 42px;"
+        >GURNEY BOWL</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li><a href="AdminDashboard.php">Dashboard</a></li>
+        <li><a href="ADBookingHistory.php">Booking History</a></li>
+        <li><a href="Adcustlist.php">Customer List</a></li>
+        <li><a href="Adservice.php">Service</a></li>
         <li><a href="Adfeedback.php">Feedback</a></li>
         <li><a href="AdminProfile.php">Profile</a></li>
         <li class="active"><a href="ADDAd.php">Add New Admin</a></li>
@@ -40,10 +44,9 @@
         ></a>GURNEY BOWL</h2>
         <ul class="nav nav-pills nav-stacked">
         <li><a href="AdminDashboard.php">Dashboard</a></li>
-        <li><a href="AdminBookingHistory.php">Booking History</a></li>
-        <li><a href="#section3">Customer List</a></li>
-        <li><a href="#section4">Events</a></li>
-        <li><a href="#section5">Availability</a></li>
+        <li><a href="ADBookingHistory.php">Booking History</a></li>
+        <li><a href="Adcustlist.php">Customer List</a></li>
+        <li><a href="Adservice.php">Service</a></li>
         <li><a href="Adfeedback.php">Feedback</a></li>
         <li><a href="AdminProfile.php">Profile</a></li>
         <li class="active"><a href="ADDAd.php">Add New Admin</a></li>
@@ -51,7 +54,7 @@
     </div>
     <br>
 
-    <div class="col-sm-10">
+    <div class="col-sm-8">
         <div class="well well-lg">
           <form action="php/signup.php"
                 method="post"

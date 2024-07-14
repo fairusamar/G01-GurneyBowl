@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 10, 2024 at 07:31 PM
+-- Generation Time: Jul 11, 2024 at 07:34 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -24,21 +24,25 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `admins`
+-- Table structure for table `booking`
 --
 
-CREATE TABLE `admins` (
-  `ID` varchar(255) NOT NULL,
-  `Password` varchar(255) NOT NULL
+CREATE TABLE `booking` (
+  `book_id` int(12) NOT NULL,
+  `email` varchar(225) NOT NULL,
+  `play_date` date NOT NULL,
+  `Time` varchar(225) NOT NULL,
+  `pax_player` varchar(225) NOT NULL,
+  `bowl_shoes` varchar(225) NOT NULL,
+  `num_lane` varchar(225) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `admins`
+-- Dumping data for table `booking`
 --
 
-INSERT INTO `admins` (`ID`, `Password`) VALUES
-('admin123@gmail.com', 'admin123ABC'),
-('admin3123@gmail.com', 'admin3123ABC');
+INSERT INTO `booking` (`book_id`, `email`, `play_date`, `Time`, `pax_player`, `bowl_shoes`, `num_lane`) VALUES
+(1, 'darwish123@gmail.com', '2024-07-11', '12:00 PM', '2', '2', '1');
 
 -- --------------------------------------------------------
 
@@ -68,7 +72,7 @@ INSERT INTO `customers` (`ID`, `Username`, `Email`, `Password`, `phone_number`, 
 (9, 'qayy', 'tololbolol23@gmail.com', '$2y$10$zdjSibDUf8KF9uM5IlrKsuATHcf/fkaBXsOfVWsuUdFwJEWO6jfhu', 'N/A', NULL, NULL, 'default-pp.png'),
 (32, 'Howl', 'fai123@gmail.com', '$2y$10$h6O/W3Ct9vNPge.ZHajoIODvw3J7E/ArkKfZv0QTvMCht80IoLEMK', 'N/A', NULL, NULL, 'default-pp.png'),
 (34, 'Holol123', 'howl123@gmail.com', '$2y$10$OgVt/pEls/UnbMM3gW6PpuH7vuY0xOLatVm5PZ8SVembYw4LwXCW6', 'N/A', NULL, NULL, 'default-pp.png'),
-(35, 'Darwish Naufal', 'darwish123@gmail.com', '$2y$10$.2tdUxxGL1NQYQ1od1W9CuXRpeK47baCFGiOEhDxf6aDx8oHbzNoC', '01164003924', '2004-12-30', NULL, 'darwish123@gmail.com668eb546513904.99173777.png'),
+(35, 'Darwish Naufal', 'darwish123@gmail.com', '$2y$10$9SrXqNC7QLA8JQQ9qbReSuU.K.F86IAR5XDi2kKRootgNswdyznhq', '01164003924', '2004-12-30', 'Prefer not to say', 'darwish123@gmail.com668eb546513904.99173777.png'),
 (36, 'qaygay123', 'qayqay123@gmail.com', '$2y$10$g.RCiQ/3Cpkqamm/gCFUO.hCROgu44KxgkkCinV3RaCvP68.Pl.5a', 'N/A', NULL, NULL, 'default-pp.png');
 
 -- --------------------------------------------------------
@@ -91,29 +95,15 @@ INSERT INTO `feedback` (`FeedbackID`, `Email`, `Suggestion`) VALUES
 (1, 'fairus@gmail.com', 'its aight'),
 (2, 'hololbolol@gmail.com', 'its alright i think?');
 
--- --------------------------------------------------------
-
---
--- Table structure for table `users`
---
-
-CREATE TABLE `users` (
-  `Email` varchar(255) NOT NULL,
-  `Password` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `users`
---
-
-INSERT INTO `users` (`Email`, `Password`) VALUES
-('nuraqylah123@gmail.com', '10pinwithmybestfriends'),
-('wishywishing@gmail.com', 'darwishbulan12'),
-('husain123@gmail.com', 'password123');
-
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `booking`
+--
+ALTER TABLE `booking`
+  ADD PRIMARY KEY (`book_id`);
 
 --
 -- Indexes for table `customers`
@@ -130,6 +120,12 @@ ALTER TABLE `feedback`
 --
 -- AUTO_INCREMENT for dumped tables
 --
+
+--
+-- AUTO_INCREMENT for table `booking`
+--
+ALTER TABLE `booking`
+  MODIFY `book_id` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `customers`

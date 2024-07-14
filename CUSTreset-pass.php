@@ -10,7 +10,7 @@ session_start();
 	<link rel="stylesheet" type="text/css" href="css/passstyle.css">
 </head>
 <body style="background:green;">
-    <form action="Adforgot-pass.php" method="post">
+    <form action="CUSTforgot-pass.php" method="post">
      	<h2>Reset Password</h2>
      	<?php if (isset($_GET['error'])) { ?>
      		<p class="error"><?php echo $_GET['error']; ?></p>
@@ -21,9 +21,9 @@ session_start();
         <?php } ?>
 
      	<label>Confirmation Word</label>
-     	<input type="text"
-     	       name="cw"
-     	       placeholder="Confirmed Number">
+     	<input type="email"
+     	       name="email"
+     	       placeholder="Email">
      	       <br>
 
      	<label>New Password</label>
@@ -39,7 +39,7 @@ session_start();
      	       <br>
 
      	<button type="submit">CHANGE</button>
-          <a href="ADsignIn.php" class="ca">HOME</a>
+          <a href="SignIn.php" class="ca">HOME</a>
      </form>
 </body>
 </html>

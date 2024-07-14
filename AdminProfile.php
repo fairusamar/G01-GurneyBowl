@@ -14,7 +14,7 @@ $user = getUserById($_SESSION['id'], $conn);
 <head>
   <title>Admin Profile</title>
   <meta charset="utf-8">
-  <link rel="icon" type="image/x-icon" href="#">
+  <link rel="icon" type="image/x-icon" href="images/gbbslogo.png">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="css/adstyle.css" type="text/css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -39,9 +39,8 @@ $user = getUserById($_SESSION['id'], $conn);
       <ul class="nav navbar-nav">
       <li><a href="AdminDashboard.php">Dashboard</a></li>
         <li><a href="AdminBookingHistory.php">Booking History</a></li>
-        <li><a href="#section3">Customer List</a></li>
-        <li><a href="#section4">Events</a></li>
-        <li><a href="#section5">Availability</a></li>
+        <li><a href="Adcustlist.php">Customer List</a></li>
+        <li><a href="Adservice.php">Service</a></li>
         <li><a href="Adfeedback.php">Feedback</a></li>
         <li class="active"><a href="AdminProfile.php">Profile</a></li>
         <li><a href="ADDAd.php">Add New Profile</a></li>
@@ -58,9 +57,8 @@ $user = getUserById($_SESSION['id'], $conn);
       <ul class="nav nav-pills nav-stacked">
       <li><a href="AdminDashboard.php">Dashboard</a></li>
         <li><a href="AdminBookingHistory.php">Booking History</a></li>
-        <li><a href="#section3">Customer List</a></li>
-        <li><a href="#section4">Events</a></li>
-        <li><a href="#section5">Availability</a></li>
+        <li><a href="Adcustlist.php">Customer List</a></li>
+        <li><a href="Adservice.php">Service</a></li>
         <li><a href="Adfeedback.php">Feedback</a></li>
         <li class="active"><a href="AdminProfile.php">Profile</a></li>
         <li><a href="ADDAd.php">Add New Profile</a></li>
@@ -68,7 +66,7 @@ $user = getUserById($_SESSION['id'], $conn);
     </div>
     <br>
 
-    <div class="col-sm-10">
+    <div class="col-sm-8">
         <div class="well well-lg">
             <h1>ADMIN PROFILE</h1>
             <br>
